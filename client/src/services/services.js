@@ -40,7 +40,15 @@ class Service {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
+    var token, jwt;
+    if(user) token = user.token;
+    if(token) jwt = JSON.parse(atob(token.split('.')[1]));
+    
+    if(jwt && jwt.exp && Date.now() < jwt.exp*1000){
+      return user;
+    }
+    return null;
   }
 
   getPublicContent() {
