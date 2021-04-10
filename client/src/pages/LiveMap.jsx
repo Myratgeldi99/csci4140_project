@@ -8,7 +8,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
     padding-left:20px;
     margin-top: 10px;
-    width:300px;
+    width:200px;
     color: ${props => props.theme.fg};
     background: ${props => props.theme.bg};
     float: left;

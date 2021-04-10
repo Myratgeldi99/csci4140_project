@@ -6,12 +6,12 @@ import { CarsList, CarsInsert, CarsUpdate, Map, LiveMap, Locations} from '../pag
 import Service from "../services/services";
 import Login from "../components/Login";
 import Register from "../components/Register";
-import Home from "../components/Home";
 //import Profile from "../components/Profile";
 import {PrivateRoute} from "../components/PrivateRoute";
-import "./index.css";
-
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "./index.css";
+import Home from "../components/Home";
+
 
 class App extends Component {
     constructor(props) {
@@ -43,7 +43,7 @@ class App extends Component {
             <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            Cartrack
+            Fleet Tracker
           </Link>
 
             {currentUser && currentUser.role === 'admin' && (
@@ -86,11 +86,11 @@ class App extends Component {
                   Login
                 </Link>
               </li>
-              <li className="nav-item">
+              {/*<li className="nav-item">
                 <Link to={"/register"} className="nav-link">
                   Sign Up
                 </Link>
-              </li>
+              </li>*/}
 
             </div>
           )}
@@ -99,7 +99,7 @@ class App extends Component {
             <Switch>
             <Route exact path={["/"]} component={Home} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            {/*<Route exact path="/register" component={Register} />*/}
             {/*<PrivateRoute exact path="/profile" component={Profile} />*/}
                 {/* <Route path="/live/map" exact component={LiveMap} /> */}
                 <Route path="/live/map" exact component={Map} />
