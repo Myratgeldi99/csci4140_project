@@ -66,7 +66,8 @@ export default class Login extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       Service.login(this.state.email, this.state.password).then(
         (response) => {
-          this.props.history.push("/");
+          if(response.role === 'admin') this.props.history.push("/live/map");
+          else this.props.history.push("/");
           window.location.reload();
         },
         error => {

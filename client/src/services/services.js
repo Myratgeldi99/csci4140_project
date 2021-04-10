@@ -48,6 +48,10 @@ class Service {
     if(jwt && jwt.exp && Date.now() < jwt.exp*1000){
       return user;
     }
+    if(jwt && jwt.exp && Date.now() >= jwt.exp*1000){
+      localStorage.removeItem("user");
+      window.location.reload();
+    }
     return null;
   }
 

@@ -7,7 +7,8 @@ import Service from "../services/services";
 import Login from "../components/Login";
 import Register from "../components/Register";
 //import Profile from "../components/Profile";
-import {PrivateRoute} from "../components/PrivateRoute";
+import {UserRoute} from "../components/UserRoute";
+import {AdminRoute} from "../components/AdminRoute";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./index.css";
 import Home from "../components/Home";
@@ -100,12 +101,12 @@ class App extends Component {
             <Route exact path={["/"]} component={Home} />
             <Route exact path="/login" component={Login} />
             {/*<Route exact path="/register" component={Register} />*/}
-            {/*<PrivateRoute exact path="/profile" component={Profile} />*/}
-                {/* <Route path="/live/map" exact component={LiveMap} /> */}
-                <Route path="/live/map" exact component={Map} />
-                <Route path="/cars/list" exact component={CarsList} />
-                <Route path="/cars/create" exact component={CarsInsert} />
-                <Route
+            {/*<UserRoute exact path="/profile" component={Profile} />*/}
+                {/* <AdminRoute path="/live/map" exact component={LiveMap} /> */}
+                <AdminRoute path="/live/map" exact component={Map} />
+                <AdminRoute path="/cars/list" exact component={CarsList} />
+                <AdminRoute path="/cars/create" exact component={CarsInsert} />
+                <AdminRoute
                     path="/cars/update/:id"
                     exact
                     component={CarsUpdate}

@@ -24,7 +24,8 @@ export default class Home extends Component {
 
     const { currentUser } = this.state;
     return (
-      <div class="row">
+      <div>
+      <div class="row" style={{paddingBottom: "200px"}}>
         <div style={{width: '50%'}}>
           <h1 class="display-2 text-center" style={{fontFamily: "'Lobster', cursive",}}>Fleet Tracker</h1>
           <p style={{fontSize: "1.6rem",}} class="lead">This is a simple web application to manage your vehicles. 
@@ -70,6 +71,58 @@ export default class Home extends Component {
           </Carousel.Item>
         </Carousel>
       </div>
+
+<div class="row" style={{paddingBottom: "200px"}}>
+      <div style={{width: '50%'}}>
+      <img
+              className="d-block w-100"
+              src="../../map.png"
+              style={{ height: '400px' }}
+              alt="myImg"
+            />
+      </div>
+      <div style={{width: '50%'}}>
+          <h1 class="display-3 text-center" style={{fontFamily: "'Lobster', cursive",}}>Live Map</h1>
+          <p style={{fontSize: "1.6rem",}} class="lead">This is a simple web application to manage your vehicles. 
+          With Fleet Tracker, you will be able to: </p>
+          <ul class="lead" style={{fontSize: "1.4rem",}}>
+            <li>know the locations of your vehicles via live map</li>
+            <li>add a new vehicle to your fleet</li>
+            <li>update a vehicle information</li>
+            <li>delete a vehicle</li>
+          </ul>
+          
+          <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="/login" role="button">Get Started</a>
+          </p>
+        </div>
+</div>
+<div class="row" style={{paddingBottom: "200px"}}>
+      <div style={{width: '50%'}}>
+          <h1 class="display-3 text-center" style={{fontFamily: "'Lobster', cursive",}}>Add Vehicle</h1>
+          <p style={{fontSize: "1.6rem",}} class="lead">This is a simple web application to manage your vehicles. 
+          With Fleet Tracker, you will be able to: </p>
+          <ul class="lead" style={{fontSize: "1.4rem",}}>
+            <li>know the locations of your vehicles via live map</li>
+            <li>add a new vehicle to your fleet</li>
+            <li>update a vehicle information</li>
+            <li>delete a vehicle</li>
+          </ul>
+          
+          <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="/login" role="button">Get Started</a>
+          </p>
+        </div>
+        <div style={{width: '50%'}}>
+      <img
+              className="d-block w-100"
+              src="../../add.png"
+              style={{ height: '400px' }}
+              alt="myImg"
+            />
+      </div>
+</div>
+</div>
     );
   }
 }

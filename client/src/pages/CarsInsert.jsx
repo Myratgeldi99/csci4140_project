@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../api'
+import Service from "../services/services";
 
 import styled from 'styled-components'
 const Title = styled.h1.attrs({
@@ -46,11 +47,8 @@ class CarsInsert extends Component {
         this.state = {
             driverName: "",
             driverId: "",
-            driverPhoneNumber: "",
             vehicleModel: "",
-            plateNumber: "",
-            lat: "",
-            lng: "",
+            plateNumber: ""
         }
     }
     
@@ -59,28 +57,28 @@ class CarsInsert extends Component {
     }
 
     handleIncludeCar = async () => {
-        const { driverName, driverId, driverPhoneNumber, vehicleModel, plateNumber, lat, lng} = this.state
-        const payload = { driverName, driverId, driverPhoneNumber, vehicleModel, plateNumber, lat, lng}
+        const { driverName, driverId, vehicleModel, plateNumber} = this.state;
+        const payload = { driverName, driverId, vehicleModel, plateNumber};
 
         await api.insertCar(payload).then(res => {
             window.alert(`Car created successfully`)
             this.setState({
                 driverName: "",
                 driverId: "",
-                driverPhoneNumber: "",
                 vehicleModel: "",
-                plateNumber: "",
-                lat: "",
-                lng: "",
+                plateNumber: ""
             })
         })
+
+        await Service.registerDriver(driverName, driverId + "@fleetracker.com", "driver1234");
     }
 
     render() {
-        const { driverName, driverId, driverPhoneNumber, vehicleModel, plateNumber, lat, lng} = this.state
+        const { driverName, driverId, vehicleModel, plateNumber} = this.state
         return (
            <Wrapper>
                 <Title>Add Vehicle</Title>
+                
                 <Label>Driver Name: </Label>
                 <InputText
                     type="text"
@@ -97,13 +95,7 @@ class CarsInsert extends Component {
                     onChange={this.handleChange}
                 />
 
-                <Label>Driver Phone Number: </Label>
-                <InputText
-                    type="text"
-                    name = "driverPhoneNumber"
-                    value={driverPhoneNumber}
-                    onChange={this.handleChange}
-                />
+                
                 <Label>Vehicle Model: </Label>
                 <InputText
                     type="text"
@@ -117,20 +109,6 @@ class CarsInsert extends Component {
                     type="text"
                     name = "plateNumber"
                     value={plateNumber}
-                    onChange={this.handleChange}
-                />
-                <Label>Location Latitude: </Label>
-                <InputText
-                    type="number"
-                    name = "lat"
-                    value={lat}
-                    onChange={this.handleChange}
-                />
-                <Label>Location Longitude: </Label>
-                <InputText
-                    type="number"
-                    name = "lng"
-                    value={lng}
                     onChange={this.handleChange}
                 />
                 <Button onClick={this.handleIncludeCar}>Add Vehicle</Button>

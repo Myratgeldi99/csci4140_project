@@ -4,13 +4,9 @@ const Schema = mongoose.Schema
 const Car = new Schema(
     {
         driverName: { type: String, required: true },
-        driverId: { type: Number, required: true },
-        driverPhoneNumber: { type: String, required: true },
+        driverId: { type: String, required: true, unique: true },
         vehicleModel: { type: String, required: true },
-        plateNumber: { type: String, required: true },
-        lat: { type: Number, required: true },
-        lng: { type: Number, required: true },
-
+        plateNumber: { type: String, required: true, unique: true }
     },
     { timestamps: true },
 )

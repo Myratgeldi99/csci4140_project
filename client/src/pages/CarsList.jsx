@@ -88,11 +88,6 @@ class CarsList extends Component {
                 filterable: true,
             },
             {
-                Header: 'Driver Phone Number',
-                accessor: 'driverPhoneNumber',
-                filterable: true,
-            },
-            {
                 Header: 'Vehicle Model',
                 accessor: 'vehicleModel',
                 filterable: true,

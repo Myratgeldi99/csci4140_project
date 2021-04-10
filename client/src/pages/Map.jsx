@@ -9,11 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-    // padding-right:20px;
+    // padding-right:10px;
     margin-top: 10px;
-    width:1000px;
+    width:900px;
     height:670px;
-    float: left;
+    float: right;
 `
 const mapStyles = {
     maxWidth: "750px",
