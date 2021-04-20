@@ -108,7 +108,7 @@ export default class Register extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0 && this.state.match) {
-      Service.registerDriver(
+      Service.registerAdmin(
         this.state.name,
         this.state.email,
         this.state.password

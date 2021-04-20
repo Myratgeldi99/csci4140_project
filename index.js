@@ -4,7 +4,7 @@ const app = express();
 const passport = require('passport');
 const connectDB = require('./config/db');
 const users = require('./routes/api/users');
-
+const cars = require('./routes/api/cars');
 connectDB();
 
 app.use(express.urlencoded({ extended: false }))
@@ -14,6 +14,7 @@ require('./config/passport')(passport);
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Methods", "*");
     res.header(
         'Access-Control-Allow-Headers',
         'Origin, X-Requested-With, Content-Type, Accept'
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/users', users);
+app.use('/api/', cars);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));

@@ -6,113 +6,126 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Service from "./services/services";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import {PrivateRoute} from "./components/PrivateRoute";
-import {AdminRoute} from "./components/AdminRoute";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { AdminRoute } from "./components/AdminRoute";
 import Home from "./components/Home";
 import AdminMap from './components/AdminMap';
 import DriverMap from "./components/DriverMap";
-
+import CarsList from "./components/CarsList";
+import CarsInsert from "./components/CarsInsert";
 
 class App extends Component {
   constructor(props) {
-      super(props);
-      this.logOut = this.logOut.bind(this);
-  
-      this.state = {
-        currentUser: Service.getCurrentUser(),
-      };
-    }
-  
-    componentDidMount() {
-      
-    }
-  
-    logOut() {
-      Service.logout();
-    }
+    super(props);
+    this.logOut = this.logOut.bind(this);
+
+    this.state = {
+      currentUser: Service.getCurrentUser(),
+    };
+  }
+
+  componentDidMount() {
+
+  }
+
+  logOut() {
+    Service.logout();
+  }
 
   render() {
-      const { currentUser } = this.state;
-      return (
+    const { currentUser } = this.state;
+    return (
       <Router>
-          <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          Fleet Tracker
+        <div>
+          <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <Link to={"/"} className="navbar-brand">
+              Fleet Tracker
         </Link>
 
-          {currentUser && currentUser.role === 'admin' && (
+            {currentUser && currentUser.role === 'admin' && (
               <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-              <Link to={"/live/amap"} className="nav-link">
-              Live Map
+                <li className="nav-item">
+                  <Link to={"/garage"} className="nav-link">
+                    Garage
               </Link>
-              </li>
-              <li className="nav-item">
-              <Link to="/cars/list" className="nav-link">
-              Fleet Info
+                </li>
+                <li className="nav-item">
+                  <Link to={"/live/amap"} className="nav-link">
+                    Live Map
               </Link>
-              </li>
-              <li className="nav-item">
-              <Link to="/cars/create" className="nav-link">
-                  Add Vehicle
+                </li>
+                <li className="nav-item">
+                  <Link to="/cars/list" className="nav-link">
+                    Fleet Info
               </Link>
-              </li>
+                </li>
+                <li className="nav-item">
+                  <Link to="/cars/create" className="nav-link">
+                    Add Vehicle
+              </Link>
+                </li>
               </div>
-          )}
+            )}
 
-{currentUser && currentUser.role === 'driver' && (
+            {currentUser && currentUser.role === 'driver' && (
               <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-              <Link to={"/live/map"} className="nav-link">
-              Live Map
+                <li className="nav-item">
+                  <Link to={"/live/map"} className="nav-link">
+                    Live Map
               </Link>
-              </li>
+                </li>
               </div>
-          )}
+            )}
 
-
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                Profile
+            {currentUser && currentUser.role === 'admin' && (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/register"} className="nav-link">
+                    Sign Up
               </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={this.logOut}>
-                Log Out
+                </li>
+                <li className="nav-item">
+                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                    Log Out
               </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
-            {/*<li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-        </li>*/}
+                </li>
+              </div>
+            )}
 
-          </div>
-        )}
-      </nav>
+            {currentUser && currentUser.role === 'driver' && (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                    Log Out
+              </a>
+                </li>
+              </div>
+            )}
+
+            {!currentUser && (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/login"} className="nav-link">
+                    Login
+              </Link>
+                </li>
+              </div>
+            )}
+          </nav>
           <div className="container mt-3">
-          <Switch>
-          <Route exact path={["/"]} component={Home} />
-          <Route exact path="/login" component={Login} />
-          <AdminRoute exact path="/register" component={Register} />
-          <AdminRoute exact path="/live/amap" component={AdminMap} />
-          <PrivateRoute exact  path="/live/map" component={DriverMap}/>
-          </Switch>
+            <Switch>
+              <Route exact path={["/"]} component={Home} />
+              <Route exact path="/login" component={Login} />
+              <AdminRoute exact path="/cars/list" component={CarsList} />
+              <AdminRoute exact path="/cars/create" component={CarsInsert} />
+              <AdminRoute exact path="/register" component={Register} />
+              <AdminRoute exact path="/live/amap" component={AdminMap} />
+              <PrivateRoute exact path="/live/map" component={DriverMap} />
+            </Switch>
           </div>
-          </div>
+        </div>
       </Router>
-      );
+    );
   }
 }
 
