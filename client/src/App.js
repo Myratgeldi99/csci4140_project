@@ -45,11 +45,6 @@ class App extends Component {
             {currentUser && currentUser.role === 'admin' && (
               <div className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <Link to={"/garage"} className="nav-link">
-                    Garage
-              </Link>
-                </li>
-                <li className="nav-item">
                   <Link to={"/live/amap"} className="nav-link">
                     Live Map
               </Link>
